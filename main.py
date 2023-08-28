@@ -14,5 +14,6 @@ class User(Base):
     usernname = Column(String(25), unique=True, nullable=False)
     first_name = Column(String(25), unique=False, nullable=False)
     last_name = Column(String(25), unique=False, nullable=False)
-    birth_date = Column(DateTime(), default=datetime.utcnow)
-    email = Column(String(25), unique=True, nullable=False)
+    birth_date = Column(DateTime())
+    email = Column(String(25), unique=True,nullable=False)
+
