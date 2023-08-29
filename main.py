@@ -15,10 +15,10 @@ class User(Base):
     first_name = Column(String(25), unique=False, nullable=False)
     last_name = Column(String(25), unique=False, nullable=False)
     birth_date = Column(DateTime())
-    email = Column(String(25), unique=True,nullable=False)
+    email = Column(String(45), unique=True,nullable=False)
     
     def __init__(self, member_id, username, first_name, last_name, birth_date, email):
-        self.member_id = member_id\
+        self.member_id = member_id
         self.username = username
         self.first_name = first_name
         self.last_name = last_name
@@ -36,3 +36,6 @@ base.metadata.create_all(bind=engine)
 #create a session class and object to interact using ORM
 Session = sessionmaker(bind=engine)
 session = Session()
+
+new_user = User(1, "saulceja08", "Saul", "Ceja", 17-1-1999, "saulceja08@gmail.com")
+session.add(new_user)
