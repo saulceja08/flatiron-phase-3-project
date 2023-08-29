@@ -25,13 +25,14 @@ class User(Base):
         self.birth_date = birth_date
         self.email = email
 
-        def __init__(self, member_id, username, first_name, last_name, birth_date, email):
-    self.member_id = member_id
-    self.username = username
-    self.first_name = first_name
-    self.last_name = last_name
-    self.birth_date = birth_date
-    self.email = email
-
     def __repr__(self):
         return f"{self.member_id}{self.username}{self.first_name}{self.last_name}{self.birth_date}{self.email}"
+    
+
+#connection to a database so that we can interact with it (echo logs SQL statements into console)
+engine = create_engine("sqllite:///fitness.db", echo=True)
+base.metadata.create_all(bind=engine)
+
+#create a session class and object to interact using ORM
+Session = sessionmaker(bind=engine)
+session = Session()
