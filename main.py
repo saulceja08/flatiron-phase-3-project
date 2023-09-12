@@ -3,10 +3,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-#define the base class 
+#define the base class using declarative_base
 Base = declarative_base() 
 
-#Define the User class that will inherti from the base class -saulceja
+#Define the User class that will inherit from the base class -saulceja
 class User(Base):
     __tablename__ = "users"
 
@@ -24,6 +24,7 @@ class User(Base):
         self.last_name = last_name
         self.birth_date = datetime.strptime(birth_date, "%d-%m-%Y")
         self.email = email
+        self.date_created = datetime.utcnow()
 
     def __repr__(self):
         return f"<User({self.member_id}, {self.username}, {self.first_name}, {self.last_name}, {self.birth_date}, {self.email})>"
@@ -38,4 +39,5 @@ session = Session()
 
 new_user = User("saulceja08", "Saul", "Ceja", "17-01-1999", "saulceja08@gmail.com")
 session.add(new_user)
-session.commit() #Note: This will commit the changes to the database 
+session.commit() #Note: This will commit the changes to the database  
+
