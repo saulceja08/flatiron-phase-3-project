@@ -15,7 +15,8 @@ class User(Base):
     first_name = Column(String(25), unique=False, nullable=False)
     last_name = Column(String(25), unique=False, nullable=False)
     birth_date = Column(DateTime())
-    email = Column(String(45), unique=True,nullable=False)
+    email = Column(String(55), unique=True,nullable=False)
+    date_created = Column(DateTime(), default=datetime.utcnow)
     
     def __init__(self, username, first_name, last_name, birth_date, email):
         self.username = username
