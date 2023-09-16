@@ -11,6 +11,7 @@ class User(Base):
     member_id = Column(Integer, primary_key=True, unique=True)
     username = Column(String(25), unique=True, nullable=False)
     password = Column(String(30), nullable=False)
+    first_name = Column(String(25), nullable=True)
     last_name = Column(String(25), nullable=True)
     birth_date = Column(DateTime())
     email = Column(String(55), unique=True, nullable=False)
