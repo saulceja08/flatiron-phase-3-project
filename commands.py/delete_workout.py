@@ -12,6 +12,8 @@ def delete_workout(user_id, workout_id):
 
     if not user:
         return click.echo('User not found.')
+    
+    workout = session.query(Workout).filter_by(id=workout_id, user_id=user_id).first()
 
-
-
+    if not workout:
+        return click.echo('Workout not found for the user.')
