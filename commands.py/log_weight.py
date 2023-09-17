@@ -6,4 +6,11 @@ import click
 @click.option('--previous_weight',prompt='Previous Weight(kg)',type=int, help='Weight before workout in kg')
 
 def log_weight(user_id, current_weight, previous_weight):
-    pass
+    session = Session()
+
+    user = session.query(User).filter_by(member_id=user_id).first()
+
+    if not user():
+        return click.echo('User not found.')
+
+
