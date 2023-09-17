@@ -1,4 +1,5 @@
 import click
+import app.models import User, WeightTracker, Session
 
 @click.command()
 @click.option('--user_id',promp='User ID',type=int, help='User ID who will own this weight')
@@ -12,5 +13,17 @@ def log_weight(user_id, current_weight, previous_weight):
 
     if not user():
         return click.echo('User not found.')
+    
+    new_weight_calc = WeightTracker(
+        user_id=user_id,
+        current_weight=current_weight,
+        previous_weight=previous_weight
+    )
 
+    session.add(new_weight_calc)
+    session,commit()
 
+    click.echo('Weight has been logged successfully.')
+
+if __name__=="__main__":
+    log_weight()
