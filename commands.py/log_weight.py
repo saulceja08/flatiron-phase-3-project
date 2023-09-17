@@ -23,7 +23,7 @@ def log_weight(user_id, current_weight, previous_weight):
     session.add(new_weight_calc)
     session.commit()
 
-    click.echo('Weight has been logged successfully.')
+    click.echo('Weight has been logged successfully!')
 
 if __name__=="__main__":
     log_weight()

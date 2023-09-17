@@ -1,5 +1,5 @@
 import click
-from app.models import User, Workout, sessionmaker
+from app.models import User, Workout, Session
 
 @click.command()
 @click.option('--user_id', prompt='User ID', type=int, help='User ID who will own this deletion')
@@ -17,3 +17,11 @@ def delete_workout(user_id, workout_id):
 
     if not workout:
         return click.echo('Workout not found for the user.')
+    
+    session.delete(workout)
+    session.commit()
+
+    click.echo('Workout deleted successfully!')
+
+if __name__=='__main__':
+    delete_workout()
