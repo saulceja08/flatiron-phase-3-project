@@ -9,11 +9,13 @@ from app.models import User, WeightTracker, Session
 def log_weight(user_id, current_weight, previous_weight):
     session = Session()
 
+    #Make sure the user exists before executing
     user = session.query(User).filter_by(username=user_id).first()
 
     if not user:
         return click.echo('User not found.')
     
+    #If user exists, then proceed with the script
     new_weight_calc = WeightTracker(
         user_id=user_id,
         current_weight=current_weight,

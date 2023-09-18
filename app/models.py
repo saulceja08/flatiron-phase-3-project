@@ -3,8 +3,10 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
+#Create the base_class for dec. model
 Base = declarative_base()
 
+#Define all the classes that I will be to each table
 class User(Base):
     __tablename__ = "users"
 
@@ -17,6 +19,7 @@ class User(Base):
     email = Column(String(55), unique=True, nullable=False)
     date_created = Column(DateTime(), default=datetime.utcnow)
 
+    #This table has a relationship with Workout
     workouts = relationship("Workout", back_populates="user")
     weight_tracker = relationship("WeightTracker", back_populates="user")
 
@@ -40,5 +43,6 @@ class WeightTracker(Base):
 
     user = relationship("User", back_populates='weight_tracker')
 
+#Create SLQAlchemy db engine along with session facotry to manage db sessions
 engine = create_engine('sqlite:///database/fitness.db', echo=True)
 Session = sessionmaker(bind=engine)

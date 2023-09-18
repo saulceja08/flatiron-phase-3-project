@@ -17,10 +17,10 @@ Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
+#This will be the CLI for user interaction. This will call functions based on their selected choices
 @click.command()
 def cli():
-    print('\nHello User! What would you like to do today?')
+    print('\n \n Hello User! What would you like to do today?')
 
     commands = ['create_user', 'log_workout', 'log_weight', 'delete_workout']
 
@@ -35,5 +35,6 @@ def cli():
     elif selected_command == 'delete_workout':
         delete_workout()
 
+#Run the CLI when user executes the script
 if __name__== '__main__':
     cli()

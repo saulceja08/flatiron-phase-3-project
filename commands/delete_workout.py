@@ -7,13 +7,16 @@ from app.models import User, Workout, Session
 def delete_workout(user_id, workout_id):
     session = Session()
 
+    #Make sure the user exists before executing
     user = session.query(User).filter_by(username=user_id).first()
 
     if not user:
         return click.echo('User not found.')
-
+    
+    #If user exists, then proceed with the script
     workout = session.query(Workout).filter_by(id=workout_id, user_id=user_id).first()
 
+    #Make sure that the id workout exists before deleting
     if not workout:
         return click.echo('Workout not found for the user.')
 
