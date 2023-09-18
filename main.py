@@ -14,7 +14,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-@click.group
+@click.group()
 def cli():
     pass
 

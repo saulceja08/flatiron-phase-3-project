@@ -2,8 +2,8 @@ import click
 from app.models import User, Workout, Session
 
 @click.command()
-@click.option('--user_id', prompt='User ID', type=int, help='User ID who will own this workout')
-@click.option('--duration_minutes', prompt='Duration (minutes)', type=int, help='Total minutes for the workout')
+@click.prompt('--user_id', prompt='User ID', type=int, help='User ID who will own this workout')
+@click.prompt('--duration_minutes', prompt='Duration (minutes)', type=int, help='Total minutes for the workout')
 
 def log_workout(user_id, duration_minutes):  # Pass user_id and duration_minutes as arguments
     session = Session()
