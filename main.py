@@ -20,13 +20,14 @@ session = Session()
 
 @click.command()
 def cli():
-    print('Hello User! What would you like to do today?')
+    print('\nHello User! What would you like to do today?')
 
     commands = ['create_user', 'log_workout', 'log_weight', 'delete_workout']
 
     selected_command = click.prompt('Choose a command:', type=click.Choice(commands))
     if selected_command == 'create_user':
-        create_user()
+        create_user(session)
+        session.commit()
     elif selected_command == 'log_workout':
         log_workout()
     elif selected_command == 'log_weight':

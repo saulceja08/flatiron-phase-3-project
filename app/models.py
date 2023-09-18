@@ -39,3 +39,6 @@ class WeightTracker(Base):
     previous_weight = Column(Integer)
 
     user = relationship("User", back_populates='weight_tracker')
+
+engine = create_engine('sqlite:///database/fitness.db', echo=True)
+Session = sessionmaker(bind=engine)
